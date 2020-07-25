@@ -16,6 +16,11 @@
 <div class="jumbotron">
     <h1 class="display-4" th:text="${totalReportedCases}"></h1>
     <p class="lead">Total Covid-19 Cases Reported as of Today</p>
+    <hr class="my-4">
+    <p>
+        <span>New Cases Reported Since Previous Day</span>
+    <span th:text="${totalNewCases}"></span>
+    </p>
 </div>
 
 
@@ -30,7 +35,7 @@
         <td th:text="${locationstat.country}"></td>
         <td th:text="${locationstat.state}"></td>
         <td th:text="${locationstat.latestTotalCases}">0</td>
-        <td th:text="${locationstat.diffFromPrevDay}">0</td>
+        <td th:text="${locationstat.diffFromPrevDay}"></td>
     </tr>
 </table>
 </div>
