@@ -7,6 +7,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+        <link
+         rel="stylesheet"
+        href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+        />
+
+         <link
+         rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous"
+        />
+         <link rel="stylesheet" href="css/covidStyles.css" />
     <style>
         .heading1{
             font-family: "Comic Sans MS" ;
@@ -17,8 +30,13 @@
             font-size: 20px;
         }
 
-
+        @media (max-width: 600px) {
+            body {
+                overflow-x: auto;
+            }
+        }
     </style>
+
 </head>
 
 <body>
@@ -37,21 +55,45 @@
 </div>
 
 
-<table class="table">
-    <tr>
-        <th>Country</th>
-        <th>State</th>
-        <th>Total Cases Reported</th>
-        <th>Changes Sinse Last Day</th>
-    </tr>
-    <tr th:each="locationstat : ${locationStats}">
-        <td th:text="${locationstat.country}"></td>
-        <td th:text="${locationstat.state}"></td>
-        <td th:text="${locationstat.latestTotalCases}">0</td>
-        <td th:text="${locationstat.diffFromPrevDay}"></td>
-    </tr>
-</table>
-</div>
+
+    <!-- Covid-19 Country wise stats Datatable -->
+    <div id="covidTable" class="table-responsive">
+        <table
+                id="covidDataTable"
+                class="table table-striped table-bordered"
+                cellspacing="0"
+                width="100%"
+        >
+            <thead>
+            <tr>
+                <th class="th-sm">Country</th>
+                <th class="th-sm">State</th>
+                <th class="th-sm">Confirmed Cases</th>
+                <th class="th-sm">Confirmed Cases since last day</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="locationstat : ${locationStats}">
+                <td th:text="${locationstat.country}"></td>
+                <td th:text="${locationstat.state}"></td>
+                <td th:text="${locationstat.latestTotalCases}">0</td>
+                <td th:text="${locationstat.diffFromPrevDay}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--End of Covid-19 Country wise stats Datatable-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"
+    ></script>
+
+    <script src="js/covidTable.js"></script>
 
     <footer class="text-gray-700 body-font">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
@@ -90,7 +132,7 @@
     </span>
         </div>
     </footer>
-
+    </div>
 </body>
 
 </html>
